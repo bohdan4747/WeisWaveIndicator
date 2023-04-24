@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+// This is optional, tells gradle that we want Java 11 compatible bytecode.
+// Can be removed in standalone addons
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven.bookmap.com/maven2/develop/"
+    }
+}
+
+dependencies {
+    if (findProperty('is_built_from_main_bookmap_project')) {
+        compile fileTree(dir: "${main_libs}", include: ['*.jar'])
+        compile project(':Level1Api')
+        compile project(':SimplifiedApiWrapper')
+    } else {
+        compileOnly group: 'com.bookmap.api', name: 'api-core', version: '7.3.1.8c12a91a61';
+        compileOnly group: 'com.bookmap.api', name: 'api-simplified', version: '7.3.1.8c12a91a61';
+
+        compileOnly group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+    }
+}
+
+jar {
+    archiveFileName = 'bm-strategies.jar'
+}
+
+eclipse.classpath.downloadJavadoc = true
