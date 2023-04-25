@@ -51,6 +51,7 @@ import velox.api.layer1.messages.indicators.Layer1ApiUserMessageModifyIndicator;
 import velox.api.layer1.messages.indicators.Layer1ApiUserMessageModifyIndicator.GraphType;
 import velox.api.layer1.messages.indicators.StrategyUpdateGenerator;
 
+
 @Layer1Attachable
 @Layer1StrategyName("Weis Wave BohdanChaika")
 @Layer1ApiVersion(Layer1ApiVersionValue.VERSION2)
@@ -309,6 +310,7 @@ public class Layer1ApiWeisWaveDemo implements
                 })
                 .setIndicatorLineStyle(IndicatorLineStyle.NONE)
                 .build();
+
     }
 
     @Override
@@ -455,7 +457,7 @@ public class Layer1ApiWeisWaveDemo implements
     }
 
     private Layer1ApiUserMessageAddStrategyUpdateGenerator getGeneratorMessage(boolean isAdd) {
-        return new Layer1ApiUserMessageAddStrategyUpdateGenerator(Layer1ApiWeisWaveDemo.class, TREE_NAME, isAdd, true, new StrategyUpdateGenerator() {
+        return new Layer1ApiUserMessageAddStrategyUpdateGenerator(Layer1ApiWeisWaveDemo.class, TREE_NAME, isAdd, true, true,new StrategyUpdateGenerator() {
             private Consumer<CustomGeneratedEventAliased> consumer;
 
             private long time = 0;
