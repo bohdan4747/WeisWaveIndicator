@@ -40,6 +40,7 @@ import velox.api.layer1.layers.strategies.interfaces.InvalidateInterface;
 import velox.api.layer1.layers.strategies.interfaces.OnlineCalculatable;
 import velox.api.layer1.layers.strategies.interfaces.OnlineValueCalculatorAdapter;
 import velox.api.layer1.messages.GeneratedEventInfo;
+import velox.api.layer1.messages.Layer1ApiHistoricalDataLoadedMessage;
 import velox.api.layer1.messages.Layer1ApiUserMessageAddStrategyUpdateGenerator;
 import velox.api.layer1.messages.UserMessageLayersChainCreatedTargeted;
 import velox.api.layer1.messages.indicators.DataStructureInterface;
@@ -323,6 +324,9 @@ public class Layer1ApiWeisWaveDemo implements
                 provider.sendUserMessage(getGeneratorMessage(true));
             }
         }
+        if (data instanceof Layer1ApiHistoricalDataLoadedMessage) {
+            provider.sendUserMessage(getGeneratorMessage(true));
+        }
     }
 
     @Override
@@ -540,6 +544,7 @@ public class Layer1ApiWeisWaveDemo implements
 
             @Override
             public void onUserMessage(Object data) {
+
             }
 
             @Override
